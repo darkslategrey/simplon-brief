@@ -20,8 +20,24 @@ docker compose build
 
 ### Lancer les tests
 
+Tester l'importer et le mini dashboard.
+
 ``` sh
 docker run -it --rm -v ./db:/data simplon-importer bundle exec rake test
+```
+
+### Création de la base de production vide
+
+Crée une base de production vide dans `db/prod.sqlite3`
+
+``` sh
+rake db:init
+```
+
+### Ouvrir une console dans la base
+
+``` sh
+rake db:console
 ```
 
 ### Lancer les services
