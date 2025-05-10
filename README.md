@@ -2,6 +2,12 @@
 
 J'ai choisis `ruby` comme langage et `sinatra` pour présenter un mini dashboard web accessible à l'adresse <http://127.0.0.1:4567>.
 
+## Demo
+
+Le répertoire `db` du projet est monté sur `/data` dans chaque container.
+
+![demo](/demo.gif)
+
 ## Schéma de données
 
 ![schéma de la base](/images/schema.svg)
@@ -20,7 +26,7 @@ docker compose build
 
 ### Lancer les tests
 
-Tester l'importer et le mini dashboard.
+Tester l'importer et les apis du mini dashboard web.
 
 ``` sh
 docker run -it --rm -v ./db:/data simplon-importer bundle exec rake test
