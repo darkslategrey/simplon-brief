@@ -1,0 +1,31 @@
+services:
+  front:
+    build:
+      context: .
+    command: ["bundle", "exec",  "rackup",  "--host", "0.0.0.0", "-p", "4567"]
+    container_name: front
+    volumes:
+      - ./db:/data
+    ports:
+      - "4567:4567"
+    depends_on:
+      - importer
+
+  importer:
+    build:
+      context: .
+    container_name: importer
+    volumes:
+      - ./db:/data
+    command: ["./go.sh"]
+    depends_on:
+      - db
+
+  db:
+    build:
+      context: ./db
+    container_name: sqlite
+    hostname: sqlite.hibit
+    volumes:
+      - ./db:/data
+    command: ["tail", "-f", "/dev/null"]

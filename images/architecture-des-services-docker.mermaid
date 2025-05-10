@@ -1,0 +1,20 @@
+graph TD
+    subgraph "Docker Compose"
+        front["front<br/>container_name: front<br/>port: 4567:4567<br/>command: bundle exec rackup"]
+        importer["importer<br/>container_name: importer<br/>command: ./go.sh"]
+        db["db<br/>container_name: sqlite<br/>hostname: sqlite.hibit<br/>command: tail -f /dev/null"]
+        
+        volume_db[("Volume<br/>./db:/data")]
+        
+        front -->|depends_on| importer
+        importer -->|depends_on| db
+        
+        importer -.->|mount| volume_db
+        db -.->|mount| volume_db
+        
+        classDef service fill:#326ce5,stroke:#fff,stroke-width:1px,color:#fff;
+        classDef volume fill:#f9a825,stroke:#fff,stroke-width:1px,color:#fff;
+        
+        class front,importer,db service;
+        class volume_db volume;
+    end

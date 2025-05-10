@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard Ventes</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="/charts.js" defer></script>
+  <style>
+    body { font-family: sans-serif; padding: 2em; background: #f9f9f9; }
+    canvas { margin: 1em 0; background: #fff; border: 1px solid #ddd; }
+  </style>
+</head>
+<body>
+  <h1>📊 Dashboard des Ventes</h1>
+  <h2 id="ca-total">Chiffre d'affaires total : …</h2>
+
+  <h3>Ventes par produit</h3>
+  <canvas id="produitChart" width="600" height="300"></canvas>
+
+  <h3>Chiffre d'affaires par ville</h3>
+  <canvas id="villeChart" width="600" height="300"></canvas>
+</body>
+</html>

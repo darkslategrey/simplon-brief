@@ -1,0 +1,50 @@
+erDiagram
+    Magasins {
+        int id_magasin PK
+        text ville
+        int nombre_salaries
+    }
+    
+    Produits {
+        text id_reference_produit PK
+        text nom
+        real prix
+        int stock
+    }
+    
+    Ventes {
+        text date PK
+        text id_reference_produit PK,FK
+        int quantite
+        int id_magasin PK,FK
+    }
+    
+    Vue_ChiffreAffairesTotal {
+        real total_ca
+    }
+    
+    Vue_VentesParProduit {
+        text id_produit
+        text nom_produit
+        int total_quantite
+        real total_ca
+    }
+    
+    Vue_VentesParVille {
+        text ville
+        int total_quantite
+        real total_ca
+    }
+    
+    Ventes }|--|| Magasins : "id_magasin"
+    Ventes }|--|| Produits : "id_reference_produit"
+    
+    Vue_ChiffreAffairesTotal ||--o{ Ventes : "utilise"
+    Vue_ChiffreAffairesTotal ||--o{ Produits : "utilise"
+    
+    Vue_VentesParProduit ||--o{ Ventes : "utilise"
+    Vue_VentesParProduit ||--o{ Produits : "utilise"
+    
+    Vue_VentesParVille ||--o{ Ventes : "utilise"
+    Vue_VentesParVille ||--o{ Produits : "utilise"
+    Vue_VentesParVille ||--o{ Magasins : "utilise"
