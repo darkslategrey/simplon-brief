@@ -13,10 +13,20 @@ SCHEMA_FILE = "#{DB_DIR}/schema.sql"
 SEED_FILE = "#{DB_DIR}/seed_test.sql"
 
 namespace :db do
+  desc 'Console base de prod'
+  task :console do
+    sh 'docker exec -it sqlite sqlite3 /data/prod.sqlite3'
+  end
+
+  desc 'Creation de la base de production vide'
+  task :init do
+    sh 'docker run  -it --rm -v ./db:/data  simplon-db sqlite3 /data/prod.sqlite3 ""'
+  end
+
   desc 'Initialiser la base de production'
   task :setup_prod do
-    FileUtils.mkdir_p(DB_DIR)
-    FileUtils.rm_f(PROD_DB)
+    # FileUtils.mkdir_p(DB_DIR)
+    # FileUtils.rm_f(PROD_DB)
     db = SQLite3::Database.new(PROD_DB)
     db.execute_batch(File.read(SCHEMA_FILE))
     puts "Base de production initialisée à #{PROD_DB}"
