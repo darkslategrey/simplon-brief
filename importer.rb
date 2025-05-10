@@ -21,13 +21,13 @@ class Importer
   end
 
   def import_data
-    puts 'Import des magasins...'
+    puts "Import des magasins... Depuis #{MAGASINS_CSV_URL}"
     import_magasins(import_csv(MAGASINS_CSV_URL))
 
-    puts 'Import des produits...'
+    puts "Import des produits... Depuis #{PRODUITS_CSV_URL}"
     import_produits(import_csv(PRODUITS_CSV_URL))
 
-    puts 'Import des ventes...'
+    puts "Import des ventes... Depuis #{VENTES_CSV_URL}"
     import_ventes(import_csv(VENTES_CSV_URL))
 
     puts 'Import terminé.'
